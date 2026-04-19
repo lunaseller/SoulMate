@@ -311,6 +311,38 @@
             text-decoration: none;
         }
 
+        /* 新增悬浮联系按钮样式 */
+        .floating-contact {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+        .contact-btn {
+            background: linear-gradient(135deg, #D97A6E, #E29587);
+            color: white;
+            border: none;
+            border-radius: 60px;
+            padding: 14px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        .contact-btn i {
+            font-size: 1.2rem;
+        }
+        .contact-btn:hover {
+            transform: scale(1.02);
+            background: linear-gradient(135deg, #C96C60, #D67C6E);
+            box-shadow: 0 10px 22px rgba(0,0,0,0.2);
+        }
+
         footer {
             border-top: 1px solid #F5DCD6;
             padding: 48px 0 32px;
@@ -354,8 +386,50 @@
                 flex-wrap: wrap;
                 justify-content: center;
             }
+            .floating-contact {
+                bottom: 20px;
+                right: 20px;
+            }
+            .contact-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
         }
     </style>
+    <!-- 联系按钮事件脚本（放在头层） -->
+    <script type="text/javascript">
+        // 确保DOM加载完成后再绑定事件
+        document.addEventListener('DOMContentLoaded', function() {
+            var contactButton = document.getElementById('contactButton');
+            if (contactButton) {
+                contactButton.addEventListener('click', function() {
+                    // 触发 Facebook Pixel 的 Lead 事件（可替换为 Contact 事件）
+                    if (typeof fbq === 'function') {
+                        fbq('track', 'Lead', {
+                            content_name: '聯絡我們',
+                            content_category: '40+交友平台'
+                        });
+                        console.log('FB Pixel Lead event tracked');
+                    } else {
+                        console.warn('Facebook Pixel not loaded');
+                    }
+                    // 平滑滚动至联系区块（.contact-note）
+                    var contactBlock = document.querySelector('.contact-note');
+                    if (contactBlock) {
+                        contactBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        // 高亮提示
+                        contactBlock.style.transition = 'box-shadow 0.3s';
+                        contactBlock.style.boxShadow = '0 0 0 3px #E29587, 0 8px 28px rgba(0,0,0,0.1)';
+                        setTimeout(function() {
+                            contactBlock.style.boxShadow = '';
+                        }, 1500);
+                    } else {
+                        alert('歡迎透過官方Line或Email聯繫我們，加入40+姊妹社群。');
+                    }
+                }, false);
+            }
+        });
+    </script>
 </head>
 <body>
 
@@ -517,6 +591,13 @@
             本平台限40歲以上女性使用，嚴格禁止任何騷擾行為。
         </div>
     </footer>
+</div>
+
+<!-- 悬浮联系按钮，点击触发FB像素事件和滚动 -->
+<div class="floating-contact">
+    <button id="contactButton" class="contact-btn">
+        <i class="fas fa-comment-dots"></i> 聯繫我們
+    </button>
 </div>
 
 <script>
