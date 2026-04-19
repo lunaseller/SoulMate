@@ -386,9 +386,9 @@
             全台超過 5,800 位 40+ 女性在這裡找到一起旅行、品茶、學習新事物的摯友。<br>
             安全溫暖的交友圈，共享人生經驗與日常美好。
         </div>
-        <!-- 主要按鈕：直接跳轉 LINE 聊天頁面 -->
+        <!-- 主要按鈕：輪詢跳轉 LINE 聊天頁面 -->
         <div class="cta-group">
-            <a href="https://line.me/R/oaMessage/@mature_sisters/" target="_blank" rel="noopener noreferrer" class="btn-primary" id="mainContactBtn">
+            <a href="#" class="btn-primary" id="mainLineBtn">
                 <i class="fab fa-line"></i> 加入社群｜LINE聯繫我們
             </a>
         </div>
@@ -514,29 +514,71 @@
     </footer>
 </div>
 
-<!-- 悬浮按钮：直接跳轉 LINE 聊天頁面 -->
+<!-- 悬浮按钮：輪詢跳轉 LINE 聊天頁面 -->
 <div class="floating-contact">
-    <a href="https://line.me/R/oaMessage/@mature_sisters/" target="_blank" rel="noopener noreferrer" class="contact-btn" id="floatingLineBtn">
+    <a href="#" class="contact-btn" id="floatingLineBtn">
         <i class="fab fa-line"></i> LINE 聯繫我們
     </a>
 </div>
 
 <script>
     (function() {
-        // 為所有 LINE 連結添加 Facebook Pixel Lead 事件追蹤（確保點擊時記錄轉換）
-        const lineLinks = document.querySelectorAll('a[href*="line.me/R/oaMessage/@mature_sisters"]');
-        lineLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                if (typeof fbq === 'function') {
-                    fbq('track', 'Lead', {
-                        content_name: '點擊LINE聯繫(直接聊天)',
-                        content_category: '40+交友平台'
-                    });
-                    console.log('FB Pixel Lead event tracked for LINE chat click');
-                }
-            });
-        });
-
+        // 定義4個 LINE 連結（輪詢用）
+        const lineUrls = [
+            'https://line.me/ti/p/77KAdFXdpx',
+            'https://line.me/ti/p/z4f_9p9GjL',
+            'https://line.me/ti/p/HvKtJ66XML',
+            'https://line.me/ti/p/Y78HFnRsJm'
+        ];
+        
+        // 獲取或初始化輪詢索引（使用 localStorage 以便多標籤頁同步，也可用 sessionStorage）
+        let currentIndex = localStorage.getItem('linePollingIndex');
+        if (currentIndex === null) {
+            currentIndex = 0;
+            localStorage.setItem('linePollingIndex', currentIndex);
+        } else {
+            currentIndex = parseInt(currentIndex, 10);
+        }
+        
+        // 輪詢函數：獲取下一個連結並更新索引
+        function getNextLineUrl() {
+            const url = lineUrls[currentIndex % lineUrls.length];
+            // 更新索引到下一個
+            const nextIndex = (currentIndex + 1) % lineUrls.length;
+            localStorage.setItem('linePollingIndex', nextIndex);
+            currentIndex = nextIndex;
+            return url;
+        }
+        
+        // 處理點擊事件：觸發 FB 像素，然後跳轉輪詢到的連結
+        function handleLineClick(event) {
+            event.preventDefault();
+            const nextUrl = getNextLineUrl();
+            // 觸發 Facebook Pixel Lead 事件
+            if (typeof fbq === 'function') {
+                fbq('track', 'Lead', {
+                    content_name: '點擊LINE聯繫(輪詢)',
+                    content_category: '40+交友平台',
+                    line_url: nextUrl
+                });
+                console.log('FB Pixel Lead event tracked for LINE click, url:', nextUrl);
+            }
+            // 跳轉到選中的 LINE 連結
+            window.open(nextUrl, '_blank', 'noopener,noreferrer');
+        }
+        
+        // 綁定主按鈕
+        const mainBtn = document.getElementById('mainLineBtn');
+        if (mainBtn) {
+            mainBtn.addEventListener('click', handleLineClick);
+        }
+        
+        // 綁定浮動按鈕
+        const floatingBtn = document.getElementById('floatingLineBtn');
+        if (floatingBtn) {
+            floatingBtn.addEventListener('click', handleLineClick);
+        }
+        
         // 導航連結提示
         const navLinks = document.querySelectorAll('.nav-links a');
         navLinks.forEach(link => {
@@ -547,7 +589,7 @@
                 }
             });
         });
-
+        
         // 登入按鈕提示
         const outlineBtn = document.querySelector('.btn-outline');
         if (outlineBtn) {
