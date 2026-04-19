@@ -83,20 +83,6 @@
         .nav-links a:hover {
             color: #D97A6E;
         }
-        .btn-outline {
-            border: 1.5px solid #D97A6E;
-            padding: 8px 20px;
-            border-radius: 40px;
-            background: transparent;
-            color: #D97A6E;
-            font-weight: 600;
-            transition: 0.2s;
-        }
-        .btn-outline:hover {
-            background: #D97A6E;
-            color: white;
-            border-color: #D97A6E;
-        }
 
         /* Hero */
         .hero {
@@ -274,7 +260,7 @@
             font-size: 0.8rem;
         }
 
-        /* 为原样联系按钮添加基础样式（不修改代码本身） */
+        /* 联系按钮样式 */
         #contactButton {
             background: linear-gradient(100deg, #D97A6E, #E29587);
             color: white;
@@ -329,7 +315,7 @@
             <a href="#">關於我們</a>
             <a href="#">安心專區</a>
             <a href="#">幫助中心</a>
-            <a href="#" class="btn-outline"><i class="fas fa-user-plus"></i> 會員登入</a>
+            <!-- 会员登入按钮已移除 -->
         </div>
     </nav>
 
@@ -345,7 +331,7 @@
             全台超過 5,800 位 40+ 女性在這裡找到一起旅行、品茶、學習新事物的摯友。<br>
             安全溫暖的交友圈，共享人生經驗與日常美好。
         </div>
-        <!-- 原样联系按钮，完全未改动 -->
+        <!-- 联系按钮 -->
         <div class="cta-group">
             <button id="contactButton">联系</button>
         </div>
@@ -471,17 +457,42 @@
     </footer>
 </div>
 
-<!-- 原样脚本，完全未改动 -->
+<!-- 联系按钮脚本：轮询打开 LINE 链接 -->
 <script type="text/javascript">
 document.getElementById('contactButton').addEventListener('click', function() {
-insert_event_code_here;
-...
+    const lineUrls = [
+        'https://line.me/ti/p/77KAdFXdpx',
+        'https://line.me/ti/p/z4f_9p9GjL',
+        'https://line.me/ti/p/HvKtJ66XML',
+        'https://line.me/ti/p/Y78HFnRsJm'
+    ];
+    
+    let currentIndex = localStorage.getItem('linePollingIndex');
+    if (currentIndex === null) {
+        currentIndex = 0;
+    } else {
+        currentIndex = parseInt(currentIndex, 10);
+    }
+    
+    const targetUrl = lineUrls[currentIndex % lineUrls.length];
+    const nextIndex = (currentIndex + 1) % lineUrls.length;
+    localStorage.setItem('linePollingIndex', nextIndex);
+    
+    if (typeof fbq === 'function') {
+        fbq('track', 'Lead', {
+            content_name: '點擊聯繫按鈕(輪詢LINE)',
+            content_category: '40+交友平台',
+            line_url: targetUrl
+        });
+    }
+    
+    window.open(targetUrl, '_blank', 'noopener,noreferrer');
 }, false);
 </script>
 
 <script>
     (function() {
-        // 導航連結提示（保留原有交互）
+        // 導航連結提示
         const navLinks = document.querySelectorAll('.nav-links a');
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
@@ -491,15 +502,6 @@ insert_event_code_here;
                 }
             });
         });
-
-        // 登入按鈕提示
-        const outlineBtn = document.querySelector('.btn-outline');
-        if (outlineBtn) {
-            outlineBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                alert('會員專區建置中，請透過LINE官方帳號 @mature_sisters 取得協助。');
-            });
-        }
     })();
 </script>
 </body>
