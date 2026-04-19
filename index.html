@@ -98,6 +98,7 @@
             border-color: #D97A6E;
         }
 
+        /* 主要按鈕樣式 */
         .btn-primary {
             background: linear-gradient(100deg, #D97A6E, #E29587);
             color: white;
@@ -112,25 +113,12 @@
             display: inline-flex;
             align-items: center;
             gap: 12px;
+            text-decoration: none;
         }
         .btn-primary:hover {
             background: linear-gradient(100deg, #C96C60, #D67C6E);
             transform: translateY(-2px);
             box-shadow: 0 12px 24px rgba(217, 122, 110, 0.35);
-        }
-        .btn-secondary {
-            background: white;
-            border: 1px solid #F0C4BC;
-            padding: 12px 28px;
-            border-radius: 48px;
-            font-weight: 600;
-            color: #5D4A4A;
-            transition: 0.2s;
-            cursor: pointer;
-        }
-        .btn-secondary:hover {
-            background: #FFF3F0;
-            border-color: #D9A89E;
         }
 
         /* Hero */
@@ -171,9 +159,7 @@
         }
         .cta-group {
             display: flex;
-            gap: 16px;
             justify-content: center;
-            flex-wrap: wrap;
             margin: 32px 0 20px;
         }
         .trust-stats {
@@ -286,32 +272,7 @@
             color: #8B737A;
         }
 
-        .contact-note {
-            background: #FFFFFFE0;
-            border-radius: 40px;
-            padding: 28px 24px;
-            text-align: center;
-            margin: 40px 0 20px;
-            border: 1px solid #F3DBD4;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .contact-note p {
-            font-size: 1rem;
-            color: #7A5A60;
-        }
-        .contact-note i {
-            color: #D97A6E;
-            margin-right: 8px;
-        }
-        .contact-note a {
-            color: #D97A6E;
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        /* 新增悬浮联系按钮样式 */
+        /* 悬浮联系按钮样式 */
         .floating-contact {
             position: fixed;
             bottom: 30px;
@@ -333,6 +294,7 @@
             align-items: center;
             gap: 10px;
             font-family: 'Noto Sans TC', sans-serif;
+            text-decoration: none;
         }
         .contact-btn i {
             font-size: 1.2rem;
@@ -396,40 +358,6 @@
             }
         }
     </style>
-    <!-- 联系按钮事件脚本（放在头层） -->
-    <script type="text/javascript">
-        // 确保DOM加载完成后再绑定事件
-        document.addEventListener('DOMContentLoaded', function() {
-            var contactButton = document.getElementById('contactButton');
-            if (contactButton) {
-                contactButton.addEventListener('click', function() {
-                    // 触发 Facebook Pixel 的 Lead 事件（可替换为 Contact 事件）
-                    if (typeof fbq === 'function') {
-                        fbq('track', 'Lead', {
-                            content_name: '聯絡我們',
-                            content_category: '40+交友平台'
-                        });
-                        console.log('FB Pixel Lead event tracked');
-                    } else {
-                        console.warn('Facebook Pixel not loaded');
-                    }
-                    // 平滑滚动至联系区块（.contact-note）
-                    var contactBlock = document.querySelector('.contact-note');
-                    if (contactBlock) {
-                        contactBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        // 高亮提示
-                        contactBlock.style.transition = 'box-shadow 0.3s';
-                        contactBlock.style.boxShadow = '0 0 0 3px #E29587, 0 8px 28px rgba(0,0,0,0.1)';
-                        setTimeout(function() {
-                            contactBlock.style.boxShadow = '';
-                        }, 1500);
-                    } else {
-                        alert('歡迎透過官方Line或Email聯繫我們，加入40+姊妹社群。');
-                    }
-                }, false);
-            }
-        });
-    </script>
 </head>
 <body>
 
@@ -458,9 +386,11 @@
             全台超過 5,800 位 40+ 女性在這裡找到一起旅行、品茶、學習新事物的摯友。<br>
             安全溫暖的交友圈，共享人生經驗與日常美好。
         </div>
+        <!-- 主要按鈕：直接跳轉 LINE 聊天頁面 -->
         <div class="cta-group">
-            <button class="btn-primary" id="heroCtaBtn"><i class="fas fa-heart"></i> 認識熟齡好友</button>
-            <button class="btn-secondary" id="learnMoreBtn"><i class="fas fa-chevron-down"></i> 了解更多</button>
+            <a href="https://line.me/R/oaMessage/@mature_sisters/" target="_blank" rel="noopener noreferrer" class="btn-primary" id="mainContactBtn">
+                <i class="fab fa-line"></i> 加入社群｜LINE聯繫我們
+            </a>
         </div>
         <div class="trust-stats">
             <div class="stat-item">
@@ -549,7 +479,7 @@
     </div>
 
     <div class="container">
-        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 32px; margin: 40px 0 20px;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 32px; margin: 40px 0 60px;">
             <div style="flex: 1; min-width: 220px;">
                 <h3 style="font-size: 1.6rem; color: #A14D5B;">🌸 熟齡熱門話題 #生活新篇章</h3>
                 <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px;">
@@ -569,15 +499,6 @@
         </div>
     </div>
 
-    <!-- 簡易聯繫區塊（取代原本的註冊大板塊，提供加入意願管道） -->
-    <div class="container">
-        <div class="contact-note">
-            <i class="fas fa-envelope-open-text"></i>
-            <p>🎯 40+ 專屬社群採審核邀請制，歡迎來信 <a href="mailto:hello@shiguang.com">hello@拾光聚會.tw</a> 或透過官方Line：<strong>@mature_sisters</strong> 索取入會資訊。</p>
-            <p style="margin-top: 10px; font-size: 0.85rem;">我們將由專人與您聯繫，確認身份後邀請加入。</p>
-        </div>
-    </div>
-
     <footer>
         <div class="footer-links">
             <a href="#">關於拾光聚會</a>
@@ -593,44 +514,28 @@
     </footer>
 </div>
 
-<!-- 悬浮联系按钮，点击触发FB像素事件和滚动 -->
+<!-- 悬浮按钮：直接跳轉 LINE 聊天頁面 -->
 <div class="floating-contact">
-    <button id="contactButton" class="contact-btn">
-        <i class="fas fa-comment-dots"></i> 聯繫我們
-    </button>
+    <a href="https://line.me/R/oaMessage/@mature_sisters/" target="_blank" rel="noopener noreferrer" class="contact-btn" id="floatingLineBtn">
+        <i class="fab fa-line"></i> LINE 聯繫我們
+    </a>
 </div>
 
 <script>
     (function() {
-        // 了解更多按鈕：平滑捲動至特色區域
-        const learnBtn = document.getElementById('learnMoreBtn');
-        const featuresSec = document.getElementById('featuresSection');
-        if (learnBtn && featuresSec) {
-            learnBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                featuresSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        }
-
-        // 主要CTA按鈕（原註冊按鈕，因已移除註冊區塊，改為顯示聯繫方式提示）
-        const heroCta = document.getElementById('heroCtaBtn');
-        if (heroCta) {
-            heroCta.addEventListener('click', function(e) {
-                e.preventDefault();
-                // 捲動至下方的聯繫區塊（contact-note）
-                const contactBlock = document.querySelector('.contact-note');
-                if (contactBlock) {
-                    contactBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    contactBlock.style.transition = 'box-shadow 0.3s';
-                    contactBlock.style.boxShadow = '0 0 0 3px #E29587, 0 8px 28px rgba(0,0,0,0.1)';
-                    setTimeout(() => {
-                        contactBlock.style.boxShadow = '';
-                    }, 1200);
-                } else {
-                    alert('歡迎透過官方Line或Email聯繫我們，加入40+姊妹社群。');
+        // 為所有 LINE 連結添加 Facebook Pixel Lead 事件追蹤（確保點擊時記錄轉換）
+        const lineLinks = document.querySelectorAll('a[href*="line.me/R/oaMessage/@mature_sisters"]');
+        lineLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (typeof fbq === 'function') {
+                    fbq('track', 'Lead', {
+                        content_name: '點擊LINE聯繫(直接聊天)',
+                        content_category: '40+交友平台'
+                    });
+                    console.log('FB Pixel Lead event tracked for LINE chat click');
                 }
             });
-        }
+        });
 
         // 導航連結提示
         const navLinks = document.querySelectorAll('.nav-links a');
@@ -638,7 +543,7 @@
             link.addEventListener('click', (e) => {
                 if (link.getAttribute('href') === '#') {
                     e.preventDefault();
-                    alert('此為40+女性交友平台展示頁，完整社群採邀請制，歡迎來信洽詢。');
+                    alert('此為40+女性交友平台展示頁，完整社群採邀請制，歡迎透過LINE聯繫我們。');
                 }
             });
         });
@@ -648,7 +553,7 @@
         if (outlineBtn) {
             outlineBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                alert('會員專區建置中，請透過Line官方帳號 @mature_sisters 取得協助。');
+                alert('會員專區建置中，請透過LINE官方帳號 @mature_sisters 取得協助。');
             });
         }
     })();
