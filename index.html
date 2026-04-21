@@ -23,7 +23,7 @@
     /></noscript>
     <!-- End Meta Pixel Code -->
 
-    <!-- 以下为您提供的联系按钮代码（完整原样添加，未做任何修改） -->
+    <!-- 以下是您要求的联系按钮代码，完整原样添加，未做任何修改 -->
     <button id="contactButton">联系</button>
     <script type="text/javascript">
     document.getElementById('contactButton').addEventListener('click', function() {
@@ -32,36 +32,6 @@
     }, false);
     </script>
     <!-- 联系按钮代码结束 -->
-
-    <!-- 注意：为了让页面布局正常，上面的按钮默认是隐藏的（因为原页面已有自己的联系按钮）。但为了保持您的代码原样，我没有删除它，仅通过CSS将其隐藏，同时确保页面中原有的联系按钮正常工作。 -->
-    <style>
-        /* 隐藏您添加的按钮，避免显示在左上角，但保留代码完整性 */
-        #contactButton {
-            display: none;
-        }
-        /* 页面中原有的联系按钮样式（保持不变） */
-        .original-contact-btn {
-            background: linear-gradient(100deg, #D97A6E, #E29587);
-            color: white;
-            border: none;
-            padding: 14px 32px;
-            border-radius: 48px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            box-shadow: 0 8px 20px rgba(217, 122, 110, 0.25);
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            font-family: inherit;
-        }
-        .original-contact-btn:hover {
-            background: linear-gradient(100deg, #C96C60, #D67C6E);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(217, 122, 110, 0.35);
-        }
-    </style>
 
     <!-- Google Font & Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -163,6 +133,28 @@
             display: flex;
             justify-content: center;
             margin: 32px 0 20px;
+        }
+        /* 页面原有的联系按钮样式 */
+        .main-contact-btn {
+            background: linear-gradient(100deg, #D97A6E, #E29587);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 48px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 20px rgba(217, 122, 110, 0.25);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: inherit;
+        }
+        .main-contact-btn:hover {
+            background: linear-gradient(100deg, #C96C60, #D67C6E);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(217, 122, 110, 0.35);
         }
         .trust-stats {
             display: flex;
@@ -346,9 +338,9 @@
             全台超過 5,800 位 40+ 女性在這裡找到一起旅行、品茶、學習新事物的摯友。<br>
             安全溫暖的交友圈，共享人生經驗與日常美好。
         </div>
-        <!-- 页面中原有的联系按钮（功能正常，样式美观） -->
+        <!-- 页面原有的联系按钮（已恢复） -->
         <div class="cta-group">
-            <button id="originalContactButton" class="original-contact-btn">联系</button>
+            <button class="main-contact-btn" id="originalContactButton">联系</button>
         </div>
         <div class="trust-stats">
             <div class="stat-item">
@@ -472,10 +464,9 @@
     </footer>
 </div>
 
-<!-- 为页面中原有的联系按钮添加实际的 LINE 轮询功能（不影响您提供的代码） -->
 <script>
     (function() {
-        // 导航提示
+        // 导航链接提示
         const navLinks = document.querySelectorAll('.nav-links a');
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
@@ -486,7 +477,7 @@
             });
         });
 
-        // 为 originalContactButton 添加功能（轮询 LINE 链接）
+        // 为页面中原有的联系按钮添加实际功能（轮询 LINE 链接并触发 Pixel 事件）
         const originalBtn = document.getElementById('originalContactButton');
         if (originalBtn) {
             originalBtn.addEventListener('click', function() {
@@ -514,7 +505,5 @@
         }
     })();
 </script>
-
-<!-- 注意：您提供的 <button id="contactButton"> 和 <script> 已原样添加到 head 中，并通过 CSS 隐藏，不影响页面显示 -->
 </body>
 </html>
