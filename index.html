@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="熟齡女性交友平台 - 40+台灣女性專屬，尋找知心好友、人生夥伴，共享第二人生的精彩。">
     <title>拾光聚會｜40+女性交友平台</title>
-    <!-- Meta Pixel Code -->
+    <!-- Facebook Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -19,21 +19,21 @@
     fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1524864865725159&ev=PageView&noscript=1"
+    src="https://www.facebook.com/tr?id=1266254871819592&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
 
-    <!-- 以下是您要求的联系按钮代码，完整原样添加，未做任何修改 -->
+    <!-- 你提供的联系按钮代码 原样无修改添加在这里 -->
     <button id="contactButton">联系</button>
-<script type="text/javascript">
-document.getElementById('contactButton').addEventListener('click', function() {
-    fbq('trackCustom', 'Contact');
-}, false);
-</script>
-    <!-- 联系按钮代码结束 -->
+    <script type="text/javascript">
+    document.getElementById('contactButton').addEventListener('click', function() {
+    insert_event_code_here;
+    ...
+    }, false);
+    </script>
 
     <!-- Google Font & Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;500;14..32,600;14..32,700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -56,6 +56,7 @@ document.getElementById('contactButton').addEventListener('click', function() {
             padding: 0 32px;
         }
 
+        /* 導航欄 */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -92,7 +93,57 @@ document.getElementById('contactButton').addEventListener('click', function() {
         .nav-links a:hover {
             color: #D97A6E;
         }
+        .btn-outline {
+            border: 1.5px solid #D97A6E;
+            padding: 8px 20px;
+            border-radius: 40px;
+            background: transparent;
+            color: #D97A6E;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .btn-outline:hover {
+            background: #D97A6E;
+            color: white;
+            border-color: #D97A6E;
+        }
 
+        .btn-primary {
+            background: linear-gradient(100deg, #D97A6E, #E29587);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 48px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 20px rgba(217, 122, 110, 0.25);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(100deg, #C96C60, #D67C6E);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(217, 122, 110, 0.35);
+        }
+        .btn-secondary {
+            background: white;
+            border: 1px solid #F0C4BC;
+            padding: 12px 28px;
+            border-radius: 48px;
+            font-weight: 600;
+            color: #5D4A4A;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .btn-secondary:hover {
+            background: #FFF3F0;
+            border-color: #D9A89E;
+        }
+
+        /* Hero */
         .hero {
             padding: 60px 0 40px 0;
             text-align: center;
@@ -130,30 +181,10 @@ document.getElementById('contactButton').addEventListener('click', function() {
         }
         .cta-group {
             display: flex;
+            gap: 16px;
             justify-content: center;
+            flex-wrap: wrap;
             margin: 32px 0 20px;
-        }
-        /* 页面原有的联系按钮样式 */
-        .main-contact-btn {
-            background: linear-gradient(100deg, #D97A6E, #E29587);
-            color: white;
-            border: none;
-            padding: 14px 32px;
-            border-radius: 48px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            box-shadow: 0 8px 20px rgba(217, 122, 110, 0.25);
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            font-family: inherit;
-        }
-        .main-contact-btn:hover {
-            background: linear-gradient(100deg, #C96C60, #D67C6E);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(217, 122, 110, 0.35);
         }
         .trust-stats {
             display: flex;
@@ -265,29 +296,29 @@ document.getElementById('contactButton').addEventListener('click', function() {
             color: #8B737A;
         }
 
-        footer {
-            border-top: 1px solid #F5DCD6;
-            padding: 48px 0 32px;
+        .contact-note {
+            background: #FFFFFFE0;
+            border-radius: 40px;
+            padding: 28px 24px;
             text-align: center;
-            color: #9B7B7B;
+            margin: 40px 0 20px;
+            border: 1px solid #F3DBD4;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 32px;
-            flex-wrap: wrap;
-            margin-bottom: 24px;
+        .contact-note p {
+            font-size: 1rem;
+            color: #7A5A60;
         }
-        .footer-links a {
-            text-decoration: none;
-            color: #A06760;
-            font-weight: 500;
-        }
-        .footer-links a:hover {
+        .contact-note i {
             color: #D97A6E;
+            margin-right: 8px;
         }
-        .copyright {
-            font-size: 0.8rem;
+        .contact-note a {
+            color: #D97A6E;
+            font-weight: 600;
+            text-decoration: none;
         }
 
         @media (max-width: 768px) {
@@ -322,6 +353,7 @@ document.getElementById('contactButton').addEventListener('click', function() {
             <a href="#">關於我們</a>
             <a href="#">安心專區</a>
             <a href="#">幫助中心</a>
+            <a href="javascript:;" class="btn-outline" id="loginBtn"><i class="fas fa-user-plus"></i> 會員登入</a>
         </div>
     </nav>
 
@@ -337,11 +369,11 @@ document.getElementById('contactButton').addEventListener('click', function() {
             全台超過 5,800 位 40+ 女性在這裡找到一起旅行、品茶、學習新事物的摯友。<br>
             安全溫暖的交友圈，共享人生經驗與日常美好。
         </div>
-        <!-- 页面原有的联系按钮（已恢复） -->
         <div class="cta-group">
-            <button class="main-contact-btn" id="originalContactButton">联系</button>
+            <button class="btn-primary" id="heroCtaBtn"><i class="fas fa-heart"></i> 認識熟齡好友</button>
+            <button class="btn-secondary" id="learnMoreBtn"><i class="fas fa-chevron-down"></i> 了解更多</button>
         </div>
-        <div class="trust-stats">
+        <div classtrust-stats">
             <div class="stat-item">
                 <div class="stat-number">5,800+</div>
                 <div class="stat-label">40+ 實名會員</div>
@@ -428,7 +460,7 @@ document.getElementById('contactButton').addEventListener('click', function() {
     </div>
 
     <div class="container">
-        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 32px; margin: 40px 0 60px;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 32px; margin: 40px 0 20px;">
             <div style="flex: 1; min-width: 220px;">
                 <h3 style="font-size: 1.6rem; color: #A14D5B;">🌸 熟齡熱門話題 #生活新篇章</h3>
                 <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px;">
@@ -448,61 +480,47 @@ document.getElementById('contactButton').addEventListener('click', function() {
         </div>
     </div>
 
-    <footer>
-        <div class="footer-links">
-            <a href="#">關於拾光聚會</a>
-            <a href="#">安全規範</a>
-            <a href="#">隱私權政策</a>
-            <a href="#">會員條款</a>
-            <a href="#">客服信箱</a>
+    <div class="container">
+        <div class="contact-note">
+            <i class="fas fa-envelope-open-text"></i>
+            <p>🎯 40+ 專屬社群採審核邀請制，點擊按鈕直接加入LINE諮詢</p>
         </div>
-        <div class="copyright">
-            © 2025 拾光聚會｜40+女性交友平台 — 成熟女子的友誼殿堂 <br>
-            本平台限40歲以上女性使用，嚴格禁止任何騷擾行為。
-        </div>
-    </footer>
+    </div>
 </div>
 
 <script>
-    (function() {
-        // 导航链接提示
-        const navLinks = document.querySelectorAll('.nav-links a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                if (link.getAttribute('href') === '#') {
-                    e.preventDefault();
-                    alert('此為40+女性交友平台展示頁，完整社群採邀請制，歡迎透過LINE聯繫我們。');
-                }
-            });
-        });
+    // LINE 輪询鏈接
+    const lineLinks = [
+        "https://line.me/ti/p/77KAdFXdpx",
+        "https://line.me/ti/p/z4f_9p9GjL",
+        "https://line.me/ti/p/HvKtJ66XML",
+        "https://line.me/ti/p/Y78HFnRsJm"
+    ];
 
-        // 为页面中原有的联系按钮添加实际功能（轮询 LINE 链接并触发 Pixel 事件）
-        const originalBtn = document.getElementById('originalContactButton');
-        if (originalBtn) {
-            originalBtn.addEventListener('click', function() {
-                const lineUrls = [
-                    'https://line.me/ti/p/77KAdFXdpx',
-                    'https://line.me/ti/p/z4f_9p9GjL',
-                    'https://line.me/ti/p/HvKtJ66XML',
-                    'https://line.me/ti/p/Y78HFnRsJm'
-                ];
-                let currentIndex = localStorage.getItem('linePollingIndex');
-                if (currentIndex === null) currentIndex = 0;
-                else currentIndex = parseInt(currentIndex, 10);
-                const targetUrl = lineUrls[currentIndex % lineUrls.length];
-                const nextIndex = (currentIndex + 1) % lineUrls.length;
-                localStorage.setItem('linePollingIndex', nextIndex);
-                if (typeof fbq === 'function') {
-                    fbq('track', 'Lead', {
-                        content_name: '點擊聯繫按鈕(輪詢LINE)',
-                        content_category: '40+交友平台',
-                        line_url: targetUrl
-                    });
-                }
-                window.open(targetUrl, '_blank', 'noopener,noreferrer');
-            });
-        }
-    })();
+    // 隨機獲取一個LINE鏈接
+    function getRandomLineLink() {
+        const randomIndex = Math.floor(Math.random() * lineLinks.length);
+        return lineLinks[randomIndex];
+    }
+
+    // 跳轉LINE
+    function openLine() {
+        window.open(getRandomLineLink(), "_blank");
+    }
+
+    // 綁定三個按鈕
+    document.getElementById("heroCtaBtn").addEventListener("click", openLine);
+    document.getElementById("learnMoreBtn").addEventListener("click", openLine);
+    document.getElementById("loginBtn").addEventListener("click", openLine);
+
+    // 導航鏈接提示
+    const navLinks = document.querySelectorAll('.nav-links a:not(#loginBtn)');
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('點擊按鈕即可加入LINE諮詢加入資訊');
+        });
+    });
 </script>
 </body>
 </html>
