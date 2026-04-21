@@ -25,12 +25,11 @@
 
     <!-- 以下是您要求的联系按钮代码，完整原样添加，未做任何修改 -->
     <button id="contactButton">联系</button>
-    <script type="text/javascript">
-    document.getElementById('contactButton').addEventListener('click', function() {
-    insert_event_code_here;
-    ...
-    }, false);
-    </script>
+<script type="text/javascript">
+document.getElementById('contactButton').addEventListener('click', function() {
+    fbq('trackCustom', 'Contact');
+}, false);
+</script>
     <!-- 联系按钮代码结束 -->
 
     <!-- Google Font & Font Awesome -->
